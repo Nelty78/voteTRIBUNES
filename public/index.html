@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Vote BDE 2017</title>
+        <title>Elections Présidentielles Scépiennes</title>
         <!--<meta name="google-signin-client_id" content="282525321476-nopagupo09jbvbvnh8frecrr7rjlrtsj.apps.googleusercontent.com"> -->
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Bree+Serif" rel="stylesheet">
         <link href="https://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
         
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
@@ -29,8 +30,7 @@
 <body>
     
 <div class="container-fluid">
-    <img class="img-responsive img-rounded logo img-left">
-    <img class="img-responsive img-rounded logo img-right">
+    <div class="title text-center">Élections Présidentielles Scépiennes</div>
     <div class="jumbotron"><div class="logout"></div><div class="admin"></div><div class="countdownwrap text-center"></div><input type="hidden" id="set-time" value="1"/>
 <div id="countdown">
   <div id='tiles' class="color-full"></div>
@@ -45,26 +45,22 @@
           <div class="double-bounce2"></div>
         </div>
         <form class="text-center hide" id="form" method="post"> 
-        <select class="custom-select form-control" name="campus">
-          <option selected>Choisissez votre campus</option>
-          <option value="Césure">Césure</option>
-          <option value="Berlin">Berlin</option>
-          <option value="Londres">Londres</option>
-          <option value="Madrid">Madrid</option>
-          <option value="Turin">Turin</option>
+        <select class="custom-select form-control" name="candidat">
+          <option selected>Choisissez le candidat</option>
+          <option value="Blanc">Vote blanc</option>
+          <option value="Dupont">M. Nicolas DUPONT-AIGNAN</option>
+          <option value="Pen">Mme Marine LE PEN</option>
+          <option value="Macron">M. Emmanuel MACRON</option>
+          <option value="Hamon">M. Benoît HAMON</option>
+          <option value="Arthaud">Mme Nathalie ARTHAUD</option>
+          <option value="Poutou">M. Philippe POUTOU</option>
+          <option value="Cheminade">M. Jacques CHEMINADE</option>
+          <option value="Lassalle">M. Jean LASSALLE</option>
+          <option value="Melenchon">M. Jean-Luc MÉLENCHON</option>
+          <option value="Asselineau">M. François ASSELINEAU</option>
+          <option value="Fillon">M. François FILLON</option>
         </select><br><br>
-            <label for="radio-one" class="radio-inline">
-                <input type="radio" name="exampleRadios" id="radio-one" value="value1"/>
-                <i id="radio-one"></i> <span id="name1"></span>
-            </label>
-            <label for="radio-two" class="radio-inline">
-                <input type="radio" name="exampleRadios" id="radio-two" value="value2"/>
-                <i id="radio-two"></i> <span id="name2"></span>
-            </label>
-            <label for="radio-three" class="radio-inline">
-                <input type="radio" name="exampleRadios" id="radio-three" value="blanc"/>
-                <span id="name3">Vote blanc</span>
-            </label><br><br>
+            <br><br>
             <button type="button" class="myButton" id="submit" onclick="submite();">Voter</button>
         </form>
     </div>

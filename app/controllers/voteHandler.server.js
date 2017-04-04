@@ -14,26 +14,32 @@ function voteHandler (db, passport) {
     }
     
     this.getVotes = function (req, res) {
-       clicks.find({ 'value': 'stacks' }, { 'email': 1 }).count().then(function (nbstacks) {
-          
-          clicks.find({ 'value': 'ted' }).count().then(function (nbted) { 
-             clicks.find({ 'value': 'blanc' }).count().then(function (nbblanc) { 
-                 
-                var json = { stacks: nbstacks, 
-                        ted: nbted,
-                        blanc: nbblanc};
-            
-                res.send(json);
-             });
-          }); 
-          
+       clicks.find({}, { 'value': 1 }).toArray(function (err, data) {
+          if(err) throw err;
+          else {
+              var counts = {'total':0,'Blanc':0,'Dupont':0,'Pen':0,'Macron':0,'Hamon':0,'Arthaud':0,'Poutou':0,'Cheminade':0,
+                  'Lassalle':0,'Melenchon':0,'Asselineau':0,'Fillon':0};
+              for(var i = 0; i < data.length; i++) {
+                  counts[data[i].value]++;
+                  counts.total++;
+              }
+              res.send(counts);
+          }
        }); 
-        
-
+    }
+    
+    this.deleteVote = function(req, res) {
+        clicks.remove( { 'email': req.body.email }, function(err, data) {
+            if(err) console.log(err);
+            
+            var count = {n: data.result.n};
+            
+            res.send(count);
+        });
     }
     
     this.getListVotes = function (req, res) {
-       clicks.find({}, {'email': 1, 'value': 1, 'time': 1, 'campus': 1}).sort( { _id: -1 } ).toArray(function (err, data) {
+       clicks.find({}, {'email': 1, 'time': 1, 'value': 1}).sort( { _id: -1 } ).toArray(function (err, data) {
           if (err) {
              throw err;
           }
@@ -43,7 +49,6 @@ function voteHandler (db, passport) {
     
     this.newVote = function (req, res) {
     
-
       var voteProjection = { 'email': 1, 'value': 1, 'time': 1 };
     
       clicks.findOne({'email': req.user.email }, voteProjection, function (err, result) {
@@ -54,15 +59,40 @@ function voteHandler (db, passport) {
          if (result) {
              var vote = result.value;
              switch(vote) {
-                          case 'ted':
-                              vote = "pour Ted'Quila";
+                          case 'Dupont':
+                              vote = "pour M. Nicolas DUPONT-AIGNAN";
                               break;
-                          case 'stacks':
-                              vote = "pour Stacks & Furious";
+                          case 'Pen':
+                              vote = "pour Mme Marine LE PEN";
                               break;
-                          case 'blanc':
+                          case 'Macron':
+                              vote = "pour M. Emmanuel MACRON";
+                              break;
+                          case 'Hamon':
+                              vote = "pour M. Benoît HAMON";
+                              break;
+                          case 'Arthaud':
+                              vote = "pour Mme Nathalie ARTHAUD";
+                              break;
+                          case 'Poutou':
+                              vote = "pour M. Philippe POUTOU";
+                              break;
+                          case 'Cheminade':
+                              vote = "pour M. Jacques CHEMINADE";
+                              break;
+                          case 'Lassalle':
+                              vote = "M. Jean LASSALLE";
+                              break;
+                          case 'Melenchon':
+                              vote = "M. Jean-Luc MÉLENCHON";
+                              break;
+                          case 'Asselineau':
+                              vote = "M. François ASSELINEAU";
+                              break; 
+                          case 'Fillon':
+                              vote = "M. François FILLON";
+                          case 'Blanc':
                               vote = "blanc";
-                              break;
                           default:
                               vote = "[ Vote invalide ]";
                               break;
@@ -72,16 +102,14 @@ function voteHandler (db, passport) {
             var date = new Date();
             
             // Let's check the POST data
-            var radioValue = req.body.exampleRadios;
-            var possibleRadios = ['ted', 'stacks', 'blanc'];
-            var selectValue = req.body.campus;
-            var possibleSelects = ['Madrid', 'Berlin', 'Londres', 'Turin', 'Césure'];
+            var selectValue = req.body.candidat;
+            var possibleSelects = ['Dupont', 'Pen', 'Macron', 'Hamon', 'Arthaud', 'Poutou', 'Cheminade', 'Lassalle', 'Melenchon', 'Asselineau', 'Fillon', 'Blanc'];
             
-            if(possibleRadios.indexOf(radioValue) === -1 || possibleSelects.indexOf(selectValue) === -1) {
+            if(possibleSelects.indexOf(selectValue) === -1) {
              res.send('Petit malin.');   
             }
             else {
-                clicks.insert({ 'email': req.user.email, 'value': radioValue, 'time': date , 'campus': selectValue}, function (err) {
+                clicks.insert({ 'email': req.user.email, 'value': selectValue, 'time': date}, function (err) {
                    if (err) {
                       throw err;
                    }
@@ -93,13 +121,40 @@ function voteHandler (db, passport) {
                      
                       var vote = doc.value;
                       switch(vote) {
-                          case 'ted':
-                              vote = "pour Ted'Quila";
+                          case 'Dupont':
+                              vote = "pour M. Nicolas DUPONT-AIGNAN";
                               break;
-                          case 'stacks':
-                              vote = "pour Stacks & Furious";
+                          case 'Pen':
+                              vote = "pour Mme Marine LE PEN";
                               break;
-                          case 'blanc':
+                          case 'Macron':
+                              vote = "pour M. Emmanuel MACRON";
+                              break;
+                          case 'Hamon':
+                              vote = "pour M. Benoît HAMON";
+                              break;
+                          case 'Arthaud':
+                              vote = "pour Mme Nathalie ARTHAUD";
+                              break;
+                          case 'Poutou':
+                              vote = "pour M. Philippe POUTOU";
+                              break;
+                          case 'Cheminade':
+                              vote = "pour M. Jacques CHEMINADE";
+                              break;
+                          case 'Lassalle':
+                              vote = "M. Jean LASSALLE";
+                              break;
+                          case 'Melenchon':
+                              vote = "M. Jean-Luc MÉLENCHON";
+                              break;
+                          case 'Asselineau':
+                              vote = "M. François ASSELINEAU";
+                              break; 
+                          case 'Fillon':
+                              vote = "M. François FILLON";
+                              break;
+                          case 'Blanc':
                               vote = "blanc";
                               break;
                           default:

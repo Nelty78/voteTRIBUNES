@@ -24,6 +24,8 @@ module.exports = function (app, db, passport, user) {
     app.route('/admin/getListVotes')
         .get(user.admin, voteHandler.getListVotes);
 
+    app.route('/admin/deleteVote')
+        .post(user.admin, voteHandler.deleteVote);
     app.route('/vote')
         .post(user.connected, voteHandler.newVote); // Only grant access if he is connected
     

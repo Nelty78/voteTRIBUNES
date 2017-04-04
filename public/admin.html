@@ -4,15 +4,21 @@
         <title>Admin</title>
 
         <link href="public/css/admin/style.css" rel="stylesheet">
-        <link href="https://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-        <script type="text/javascript" src="public/js/admin.js"></script>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.css">
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.13/b-1.2.4/b-flash-1.2.4/b-html5-1.2.4/r-2.1.1/datatables.min.css"/>
+        
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.js"></script>
+        <script type="text/javascript" src="public/js/admin.js"></script>
+        <script type="text/javascript" src="public/js/jquery.blockUI.js"></script>
+        
         <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.13/b-1.2.4/b-flash-1.2.4/b-html5-1.2.4/r-2.1.1/datatables.min.js"></script>
+        <script src="https://use.fontawesome.com/372ca4eda9.js"></script>
     </head>
     <body>
-<h1 class="text-center header">Administration - Résultat des votes</h1>
+<h1 class="text-center header">Administration - Résultat des votes </h1>
 <h4 class="text-center"><a href="/">Retour à l'accueil</a></h4>
 
 
@@ -20,15 +26,30 @@
 <div class="cont left">
   <h3 class="title text-center">Statistiques</h2>
   <div class="row">
-      <div class="col-sm-7 col-md-7 col-lg-7">
-          <ul>
-          <li>Nombre total de votants : <span id="nbtotal"></span> dont <span id="nbblanc"></span> blanc(s)</li>
-          <li>Stacks & Furious : <span id="nbstacks"></span> voix ( <span id="pcstacks"></span> % )</li>
-          <li>Ted'Quila : <span id="nbted"></span> voix ( <span id="pcted"></span> % )</li>
-          </ul>
+      <div class="col-sm-12 col-md-12 col-lg-12 message hide">
+          <p class="text-center">Les statistiques détaillées des candidats s'afficheront une fois qu'il y aura au moins 10 votes.</p>
       </div>
-      <div class="col-sm-5 col-md-5 col-lg-5">
+      <div class="col-sm-6 col-md-6 col-lg-6 candidates hide">
+              <div class="container-candidate"><div class="one text-right">M. Nicolas DUPONT-AIGNAN</div> <div class="w3-light-grey two"><div id="b1" class="w3-container w3-blue first w3-center" style="height: 10px; width:1%; color: black !important;"><span id="p1"></span>%</div></div></div><br>
+              <div class="container-candidate"><div class="one text-right">Mme Marine LE PEN</div> <div class="w3-light-grey two"><div id="b2" class="w3-container w3-blue w3-center" style="height: 10px; width:1%; color: black !important;"><span id="p2"></span>%</div></div></div><br>
+              <div class="container-candidate"><div class="one text-right">M. Emmanuel MACRON</div> <div class="w3-light-grey two"><div id="b3" class="w3-container w3-blue w3-center" style="height: 10px; width:1%; color: black !important;"><span id="p3"></span>%</div></div></div><br>
+              <div class="container-candidate"><div class="one text-right">M. Benoît HAMON</div>  <div class="w3-light-grey two"><div id="b4" class="w3-container w3-blue w3-center" style="height: 10px; width:1%; color: black !important;"><span id="p4"></span>%</div></div></div><br>
+              <div class="container-candidate"><div class="one text-right">Mme Nathalie ARTHAUD</div>  <div class="w3-light-grey two"><div id="b5" class="w3-container w3-blue w3-center" style="height: 10px; width:1%; color: black !important;"><span id="p5"></span>%</div></div></div><br>
+              <div class="container-candidate"><div class="one text-right">M. Philippe POUTOU</div>  <div class="w3-light-grey two"><div id="b6" class="w3-container w3-blue w3-center" style="height: 10px; width:1%; color: black !important;"><span id="p6"></span>%</div></div></div><br>
+              <div class="container-candidate"><div class="one text-right">M. Jacques CHEMINADE</div>  <div class="w3-light-grey two"><div id="b7" class="w3-container w3-blue w3-center" style="height: 10px; width:1%; color: black !important;"><span id="p7"></span>%</div></div></div><br>
+              <div class="container-candidate"><div class="one text-right">M. Jean LASSALLE</div>  <div class="w3-light-grey two"><div id="b8" class="w3-container w3-blue w3-center" style="height: 10px; width:1%; color: black !important;"><span id="p8"></span>%</div></div></div><br>
+              <div class="container-candidate"><div class="one text-right">M. Jean-Luc MÉLENCHON</div>  <div class="w3-light-grey two"><div id="b9" class="w3-container w3-blue w3-center" style="height: 10px; width:1%; color: black !important;"><span id="p9"></span>%</div></div></div><br>
+              <div class="container-candidate"><div class="one text-right">M. François ASSELINEAU</div>  <div class="w3-light-grey two"><div id="b10" class="w3-container w3-blue w3-center" style="height: 10px; width:1%; color: black !important;"><span id="p10"></span>%</div></div></div><br>
+              <div class="container-candidate"><div class="one text-right">M. François FILLON</div>  <div class="w3-light-grey two"><div id="b11" class="w3-container w3-blue w3-center" style="height: 10px; width:1%; color: black !important;"><span id="p11"></span>%</div></div></div><br>
+              <div class="container-candidate"><div class="one text-right">Blanc </div>  <div class="w3-light-grey two"><div id="b12" class="w3-container w3-blue w3-center" style="height: 10px; width:1%; color: black !important;"><span id="p12"></span>%</div></div></div><br>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-12 stats">
           <ul>
+              <li>Nombre total de votes : <span id="nbtotal"></span> dont <span id="nbblanc"></span> blanc(s)</li>
+              <!-- <li>Stacks & Furious : <span id="nbstacks"></span> voix ( <span id="pcstacks"></span> % )</li>-->
+              <!-- <li>Ted'Quila : <span id="nbted"></span> voix ( <span id="pcted"></span> % )</li>-->
               <li>Début : <span id="debut"></span></li>
               <li>Clôture : <span id="cloture"></span></li>
               <!-- <li>Ajd : <span id="now"></span></li> -->

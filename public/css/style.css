@@ -2,7 +2,16 @@ body {
   height: 100%;
   color: #eff5ff;
   font-family: 'Roboto', Arial, sans-serif;
+  background: linear-gradient(90deg, RGB(216,6,29) 50%, RGB(10,100,175) 50%)
 }
+
+.title {
+  margin-top: 20px;
+  font-size: 40px;
+  margin-bottom: -20%;
+  font-family: 'Bree Serif';
+}
+
 
 .hide {
   display: none;
@@ -75,7 +84,7 @@ body {
 }
 
 .jumbotron {
-  background-color: #5b9aff;
+  background-color: #409dff;
   position: relative;
   -webkit-box-shadow: 9px 9px 7px -8px rgba(0,0,0,0.27);
 -moz-box-shadow: 9px 9px 7px -8px rgba(0,0,0,0.27);
@@ -337,3 +346,4 @@ label {
     -webkit-transform: scale(1.0);
   }
 }
+

@@ -1,9 +1,5 @@
 /* global $ */
 
-var rand = Math.random();
-var src_ted = "public/img/logoted.jpg";
-var src_stacks = "public/img/logostacks.png";
-var names = ["Stacks & Furious", "Ted'Quila"];
 
 $( document ).ready(function() {
 
@@ -27,7 +23,7 @@ $( document ).ready(function() {
         $(" #login ").removeClass('alert alert-danger');
         $(" #welcome ").addClass('hide');
         $(" #form ").removeClass('hide');
-        $(" #login ").html('Bienvenue !');
+        $(" #login ").html('Bienvenue aux Élections Présidentielles Scépiennes !<br> Choisissez votre candidat ci-dessous. Le vote est complètement <strong>anonyme</strong>.');
         $(" .logout ").removeClass('hide');
         $(" .logout ").html('<a href="/logout"">Déconnexion <i class="fa fa-sign-out fa-lg" aria-hidden="true"></i></a>');
       }
@@ -43,87 +39,21 @@ $( document ).ready(function() {
         $(" .logout ").addClass('hide');
         $(" #welcome ").removeClass('hide');  
       }
-      
-      
-      
     });
-
-    if(rand < 0.5) {
-      $(" body ").css('background', 'linear-gradient(90deg, RGB(156,21,29) 50%, #F5E834 50%)');
-      $(" .img-left ").attr('src', src_stacks);
-      $(" .img-right ").attr('src', src_ted);
-      $(" #name1 ").text(names[0]);
-      $(" #name2 ").text(names[1]);
-      $(" #radio-one ").css('color', 'RGB(156,21,29)');
-      $(" #radio-one ").attr('value', 'stacks');
-      $(" #radio-two ").css('color', '#F5E834');
-      $(" #radio-two ").attr('value', 'ted');
-      }
-    else {
-      $(" body ").css('background', 'linear-gradient(90deg, #F5E834 50%, RGB(156,21,29) 50%)'); 
-      $(" .img-left ").attr('src', src_ted);
-      $(" .img-right ").attr('src', src_stacks);
-      $(" #name1 ").text(names[1]);
-      $(" #name2 ").text(names[0]);
-      $(" #radio-one ").css('color', '#F5E834');
-      $(" #radio-one ").attr('value', 'ted');
-      $(" #radio-two ").css('color', 'RGB(156,21,29)');
-      $(" #radio-two ").attr('value', 'stacks');
-    
-    }
-
 });
-
-
-
-$.getJSON('//api.ipify.org?format=jsonp&callback=?', function(data) {
-  var ip = data.ip;
-  $.getJSON('https://ipapi.co/'+ip+'/json/', function(data){
-    var country = data.country;
-    var selected = '';
-    
-    if(country == 'FR') {
-      $(" #country ").html('Êtes-vous en France ? Ce site est destiné aux étudiants sur les campus étrangers et les césures.');
-      $(" #country ").removeClass('hide');
-      $(" #country ").addClass('alert alert-danger'); 
-    }
-    
-    switch(country) {
-      case 'ES':
-        selected = 'Madrid';
-        break;
-      case 'GB':
-        selected = 'Londres';
-        break;
-      case 'DE':
-        selected = 'Berlin';
-        break;
-      case 'IT':
-        selected = 'Turin';
-        break;
-      default:
-        selected = '';
-        break;
-    }
-    $('.custom-select option[value='+selected+']').prop('selected', true);
-  });
-});
-
 
 function submite() {
-  var radioValue = $('input[name=exampleRadios]:checked').val();
-  var possibleRadios = ['ted', 'stacks', 'blanc'];
-  var selectValue = $('select option:selected').text();
-  var possibleSelects = ['Madrid', 'Berlin', 'Londres', 'Turin', 'Césure'];
+  var selectValue = $('select option:selected').val();
+  var possibleSelects = ['Dupont', 'Pen', 'Macron', 'Hamon', 'Arthaud', 'Poutou', 'Cheminade', 'Lassalle', 'Melenchon', 'Asselineau', 'Fillon', 'Blanc'];
   
-  if(possibleRadios.indexOf(radioValue) > -1 && possibleSelects.indexOf(selectValue) > -1) {
+  if(possibleSelects.indexOf(selectValue) > -1) {
     $(" #login ").text('');
     $(" #login ").removeClass('alert alert-danger'); 
     $(" #form ").addClass('hide');
     $(" #welcome ").addClass('hide');
     $(" #login ").html('');
     $(" .spinner ").removeClass('hide');
-    $.post( "/vote", { exampleRadios: radioValue, campus: selectValue }, function (data) {
+    $.post( "/vote", { candidat: selectValue }, function (data) {
       $(" .spinner ").addClass('hide');
       $(" #login ").removeClass('hide').html(data);
     });
