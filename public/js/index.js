@@ -50,12 +50,12 @@ $( document ).ready(function() {
     
 });
 
-function displayIfConnected() {
+function displayIfConnected(beforeVote) {
   $.get('api/connected', function(data) { 
         
         $(" .spinner ").addClass('hide');
         $(" #countdown ").removeClass("hide");  
-  
+        
         
         if(data.connected) {
           
@@ -78,6 +78,7 @@ function displayIfConnected() {
             });
           }
           
+          if(!beforeVote) {
           $(" #welcome3 ").addClass("hide");
           $(" #login ").removeClass('alert alert-danger');
           $(" #welcome ").addClass('hide');
@@ -85,6 +86,8 @@ function displayIfConnected() {
           $(" #login ").html('Bienvenue aux Élections Présidentielles Scépiennes !<br> Choisissez votre candidat ci-dessous. Le vote est complètement <strong>anonyme</strong>.');
           $(" .logout ").removeClass('hide');
           $(" .logout ").html('<a href="/logout"">Déconnexion <i class="fa fa-sign-out fa-lg" aria-hidden="true"></i></a>');
+          }
+            
         }
         else {
           $(" #welcome3 ").removeClass("hide");

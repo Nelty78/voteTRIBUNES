@@ -18,10 +18,6 @@ $( document ).ready(function() {
         console.log('sent');
     });
     
-    vote.on('disconnect', function () {
-        alert('off');
-    });
-    
     vote.on('connected', function (message) {
         console.log(message);
     })
