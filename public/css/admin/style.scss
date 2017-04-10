@@ -27,9 +27,7 @@ $table-header-border: 1px solid #FFF;
 
 // The Responstable mixin
 
-body {
-  background-color: $background-color !important;
-}
+
 
   @media only screen and (max-width: 1000px) {
     body {
@@ -44,7 +42,8 @@ body {
 }
 
 .header {
-  color: black;
+  font-family: "Bree Serif";
+  color: white;
 }
 
 .left {
@@ -182,10 +181,10 @@ body {
 // General styles
 
 body {
+  background-color: $background-color !important;
+  font-family: 'Roboto', Arial, sans-serif;
   padding: 0 2em;
-  font-family: Arial, sans-serif;
   color: #024457;
-  background: #f2f2f2;
 }
 
 h1 {
