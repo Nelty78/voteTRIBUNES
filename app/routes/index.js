@@ -3,10 +3,10 @@
 var VoteHandler = require(process.cwd() + '/app/controllers/voteHandler.server.js');
 var UserHandler = require(process.cwd() + '/app/controllers/userHandler.server.js');
 
-module.exports = function (app, db, passport, user) {
+module.exports = function (app, db, passport, io) {
 
     var user = new UserHandler();
-    var voteHandler = new VoteHandler(db, passport);
+    var voteHandler = new VoteHandler(db, passport, io);
 
     app.route('/')
         .get(function (req, res) {

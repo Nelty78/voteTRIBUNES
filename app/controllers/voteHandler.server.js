@@ -1,9 +1,21 @@
 'use strict';
 
-function voteHandler (db, passport) {
+function voteHandler (db, passport, io) {
 
     var clicks = db.collection('votes');
     var startEnd = db.collection('startEnd');
+    
+    var sockets = [];
+
+    io.of('/vote').on('connection', function(socket) {
+        socket.emit('connected', 'You are connected!');
+        sockets.push(socket);
+        
+        socket.on('disconnect', function() {
+            var k = sockets.indexOf(socket);
+            sockets.splice(k, 1);
+        });
+    });
     
     this.getStartEnd = function (req, res) {
         startEnd.findOne(function (err, doc) {
@@ -14,6 +26,7 @@ function voteHandler (db, passport) {
     }
     
     this.getVotes = function (req, res) {
+        
        clicks.find({}, { 'value': 1 }).toArray(function (err, data) {
           if(err) throw err;
           else {
@@ -81,18 +94,20 @@ function voteHandler (db, passport) {
                               vote = "pour M. Jacques CHEMINADE";
                               break;
                           case 'Lassalle':
-                              vote = "M. Jean LASSALLE";
+                              vote = "pour M. Jean LASSALLE";
                               break;
                           case 'Melenchon':
-                              vote = "M. Jean-Luc MÉLENCHON";
+                              vote = "pour M. Jean-Luc MÉLENCHON";
                               break;
                           case 'Asselineau':
-                              vote = "M. François ASSELINEAU";
+                              vote = "pour M. François ASSELINEAU";
                               break; 
                           case 'Fillon':
-                              vote = "M. François FILLON";
+                              vote = "pour M. François FILLON";
+                              break;
                           case 'Blanc':
                               vote = "blanc";
+                              break;
                           default:
                               vote = "[ Vote invalide ]";
                               break;
@@ -113,6 +128,7 @@ function voteHandler (db, passport) {
                    if (err) {
                       throw err;
                    }
+                   
         
                    clicks.findOne({'email': req.user.email}, voteProjection, function (err, doc) {
                       if (err) {
@@ -122,47 +138,55 @@ function voteHandler (db, passport) {
                       var vote = doc.value;
                       switch(vote) {
                           case 'Dupont':
-                              vote = "pour M. Nicolas DUPONT-AIGNAN";
+                              vote = " pour M. Nicolas DUPONT-AIGNAN.";
                               break;
                           case 'Pen':
-                              vote = "pour Mme Marine LE PEN";
+                              vote = " pour Mme Marine LE PEN.";
                               break;
                           case 'Macron':
-                              vote = "pour M. Emmanuel MACRON";
+                              vote = " pour M. Emmanuel MACRON.";
                               break;
                           case 'Hamon':
-                              vote = "pour M. Benoît HAMON";
+                              vote = " pour M. Benoît HAMON.";
                               break;
                           case 'Arthaud':
-                              vote = "pour Mme Nathalie ARTHAUD";
+                              vote = " pour Mme Nathalie ARTHAUD.";
                               break;
                           case 'Poutou':
-                              vote = "pour M. Philippe POUTOU";
+                              vote = " pour M. Philippe POUTOU.";
                               break;
                           case 'Cheminade':
-                              vote = "pour M. Jacques CHEMINADE";
+                              vote = " pour M. Jacques CHEMINADE.";
                               break;
                           case 'Lassalle':
-                              vote = "M. Jean LASSALLE";
+                              vote = " M. Jean LASSALLE.";
                               break;
                           case 'Melenchon':
-                              vote = "M. Jean-Luc MÉLENCHON";
+                              vote = " M. Jean-Luc MÉLENCHON.";
                               break;
                           case 'Asselineau':
-                              vote = "M. François ASSELINEAU";
+                              vote = " M. François ASSELINEAU.";
                               break; 
                           case 'Fillon':
-                              vote = "M. François FILLON";
+                              vote = " M. François FILLON.";
                               break;
                           case 'Blanc':
-                              vote = "blanc";
+                              vote = ".";
                               break;
                           default:
                               vote = "[ Vote invalide ]";
                               break;
                       }
-
-                      res.send("Merci d'avoir voté "+vote+".");
+                        
+                      console.log('new vote registered'); 
+                      
+                      /* SOCKET.IO */ 
+                      for(var i = 0; i < sockets.length; i++) {
+                          sockets[i].emit('new vote','new vote, refreshing...');
+                      }
+                      /* SOCKET.IO */
+                    
+                      res.send("Merci d'avoir voté"+vote+"");
                    });
                 });
             }

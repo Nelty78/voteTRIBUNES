@@ -15,7 +15,7 @@
 #countdown{
 box-shadow: 0 1px 2px 0 rgba(1, 1, 1, 0.4);
 width: 240px;
-	height: 96px;
+	height: 80px;
 	text-align: center;
 background: #f1f1f1;
 
@@ -35,7 +35,7 @@ text-shadow: 1px 1px 0px #ccc;
   font-family: Arial, sans-serif;
 	text-align: center;
   
-  padding: 20px;
+  padding: 10px;
   border-radius: 5px 5px 0 0;
   font-size: 22px;
   display: block;

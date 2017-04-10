@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Elections Présidentielles Scépiennes</title>
+        <title>Élections Présidentielles Scépiennes</title>
         <!--<meta name="google-signin-client_id" content="282525321476-nopagupo09jbvbvnh8frecrr7rjlrtsj.apps.googleusercontent.com"> -->
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Bree+Serif" rel="stylesheet">
         <link href="https://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.css">
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-        <!-- <script type="text/javascript" src="https://apis.google.com/js/platform.js"></script> -->
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-        <script type="text/javascript" src="public/js/index.js"></script> 
-        <script type="text/javascript" src="public/js/countdown.js"></script>
         <link href="public/css/style.css" rel="stylesheet">
-        <link href="public/css/countdown.css" rel="stylesheet">
+        <link href="public/css/countdown.css" rel="stylesheet">  
+      
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.js"></script>
+        <script type="text/javascript" src="public/js/jquery.blockUI.js"></script>
+        <script type="text/javascript" src="public/js/countdown.js"></script>
+        <script src="/public/js/jaaulde-cookies.js"></script>
+        <script type="text/javascript" src="public/js/index.js"></script> 
+        
 
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -32,35 +36,83 @@
 <div class="container-fluid">
     <div class="title text-center">Élections Présidentielles Scépiennes</div>
     <div class="jumbotron"><div class="logout"></div><div class="admin"></div><div class="countdownwrap text-center"></div><input type="hidden" id="set-time" value="1"/>
-<div id="countdown">
+<div id="countdown" class="hide">
   <div id='tiles' class="color-full"></div>
   <div class="countdown-label">Temps Restant</div>
 </div>
-<div class="author">by <a href="mailto:leo.roux@edu.escpeurope.eu">Léo Roux</a></div><br>
-        <p class="text-center" id="welcome" class="welcome2">Afin de voter, connecte-toi à ton <b>adresse ESCP</b>.</p>
-        <div class="text-center" id="welcome"><a href="/auth/google" class="btn btn-danger"><span class="fa fa-google""></span> <strong>Google</strong></a></div>
+<div class="author">by <span id="author">Léo Roux</a></div><br>
+        <div id="welcome3">
+            <p class="text-center" id="welcome" class="welcome2">Afin de voter, connecte-toi à ton <b>adresse ESCP</b>.</p>
+            <div class="text-center" id="welcome"><a href="/auth/google" class="btn btn-danger"><span class="fa fa-google"></span> <strong>Google</strong></a></div>
+        </div>
         <br><p class="text-center" id="login"></p><p class="text-center" id="fb"></p><p class="text-center" id="country"></p>
         <div class="spinner hide">
           <div class="double-bounce1"></div>
           <div class="double-bounce2"></div>
         </div>
         <form class="text-center hide" id="form" method="post"> 
-        <select class="custom-select form-control" name="candidat">
-          <option selected>Choisissez le candidat</option>
-          <option value="Blanc">Vote blanc</option>
-          <option value="Dupont">M. Nicolas DUPONT-AIGNAN</option>
-          <option value="Pen">Mme Marine LE PEN</option>
-          <option value="Macron">M. Emmanuel MACRON</option>
-          <option value="Hamon">M. Benoît HAMON</option>
-          <option value="Arthaud">Mme Nathalie ARTHAUD</option>
-          <option value="Poutou">M. Philippe POUTOU</option>
-          <option value="Cheminade">M. Jacques CHEMINADE</option>
-          <option value="Lassalle">M. Jean LASSALLE</option>
-          <option value="Melenchon">M. Jean-Luc MÉLENCHON</option>
-          <option value="Asselineau">M. François ASSELINEAU</option>
-          <option value="Fillon">M. François FILLON</option>
-        </select><br><br>
-            <br><br>
+       <label>
+          <input type="radio" name="candidat" value="Dupont" />
+          <img src="public/img/Dupont.png" class="img-responsive img-rounded">
+          <p>M. Nicolas Dupont-Aignan</p>
+        </label>
+        <label>
+          <input type="radio" name="candidat" value="Pen" />
+          <img src="public/img/Pen.png" class="img-responsive img-rounded">
+          <p>Mme Marine Le Pen</p>
+        </label>
+        <label>
+          <input type="radio" name="candidat" value="Macron" />
+          <img src="public/img/EMacron.png" class="img-responsive img-rounded">
+          <p>M. Emmanuel Macron</p>
+        </label>
+        <label>
+          <input type="radio" name="candidat" value="Hamon" />
+          <img src="public/img/Hamon.png" class="img-responsive img-rounded">
+          <p>M. Benoît Hamon</p>
+        </label>
+        <label>
+          <input type="radio" name="candidat" value="Arthaud" />
+          <img src="public/img/Arthaud.png" class="img-responsive img-rounded">
+          <p>Mme Nathalie Arthaud</p>
+        </label>
+        <label>
+          <input type="radio" name="candidat" value="Poutou" />
+          <img src="public/img/Poutou.png" class="img-responsive img-rounded">
+          <p>M. Philippe Poutou</p>
+        </label>
+        <br>
+        <label>
+          <input type="radio" name="candidat" value="Cheminade" />
+          <img src="public/img/Cheminade.png" class="img-responsive img-rounded">
+          <p>M. Jacques Cheminade</p>
+        </label>
+        <label>
+          <input type="radio" name="candidat" value="Lassalle" />
+          <img src="public/img/Lassalle.png" class="img-responsive img-rounded">
+          <p>M. Jean Lassalle</p>
+        </label>
+        <label>
+          <input type="radio" name="candidat" value="Melenchon" />
+          <img src="public/img/Melenchon.png" class="img-responsive img-rounded">
+          <p>M. Jean-Luc Mélenchon</p>
+        </label>
+        <label>
+          <input type="radio" name="candidat" value="Asselineau" />
+          <img src="public/img/Asselineau.png" class="img-responsive img-rounded">
+          <p>M. François ASSELINEAU</p>
+        </label>
+        <label>
+          <input type="radio" name="candidat" value="Fillon" />
+          <img src="public/img/FFillon.png" class="img-responsive img-rounded">
+          <p>M. François Fillon</p>
+        </label>
+        <label>
+          <input type="radio" name="candidat" value="Blanc" />
+          <img src="public/img/Blanc.png" class="img-responsive img-rounded">
+          <p>Vote Blanc</p>
+        </label>
+<br>
             <button type="button" class="myButton" id="submit" onclick="submite();">Voter</button>
         </form>
     </div>

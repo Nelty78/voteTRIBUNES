@@ -17,6 +17,12 @@ var port = process.env.PORT || 8080;
 
 var app = express();
 
+/* SOCKET.IO */
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
+
+/* SOCKET.IO */
+
 var srcPath = __dirname;
 var destPath = __dirname;
 app.use(sassMiddleware({
@@ -122,11 +128,13 @@ passport.use(new GoogleStrategy({
         });
     });
 
-    routes(app, db, passport);
+    routes(app, db, passport, io);
 
-    app.listen(port, function () {
-        console.log('Listening on port '+port+'...');
-    });
+    //app.listen(port, function () {
+    //    console.log('Listening on port '+port+'...');
+    //});
+    
+    server.listen(port);
 
 });
 

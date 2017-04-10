@@ -1,8 +1,33 @@
 /* global $ */
+/* global io */
 
 $( document ).ready(function() {
  
  $.blockUI({message: "Chargement..."});
+ 
+ function socketMessages() {
+    var vote = io.connect('https://bde-nelty78.c9users.io:8080/vote');
+    vote.on('new vote', function (data) {
+        getVotes();
+        getStats();
+        console.log(data);
+  });
+  
+    vote.on('connection', function (socket) {
+        socket.emit('connected', 'yup');
+        console.log('sent');
+    });
+    
+    vote.on('disconnect', function () {
+        alert('off');
+    });
+    
+    vote.on('connected', function (message) {
+        console.log(message);
+    })
+ }
+ 
+ socketMessages();
  
  function barWidth(ratio) {
      return (ratio*1800).toFixed(0);
@@ -234,8 +259,7 @@ function getVotes() {
     
     $.unblockUI();
     
-    setTimeout(function() { getStats(); getVotes();}, 3000);
-    setTimeout(getTime(), 30000);
+    setTimeout(function() { getTime();}, 60000);
     });
 }
 
