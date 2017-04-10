@@ -178,7 +178,7 @@ function voteHandler (db, passport, io) {
                               break;
                       }
                         
-                      console.log('new vote registered'); 
+                      
                       
                       /* SOCKET.IO */ 
                       for(var i = 0; i < sockets.length; i++) {

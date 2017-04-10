@@ -4,8 +4,6 @@
 
 $( document ).ready(function() {
   
-    $(" #welcome3 ").addClass("hide");
-    $(" #countdown ").addClass("hide");
     $(" .spinner ").removeClass('hide'); // Let's load the page first...
     $(" span#author ").on( "click", authorInfo); // Let's link the author's name to a pop-up
   
@@ -49,35 +47,40 @@ $( document ).ready(function() {
       if(result === true) $(" .admin ").html('<a href="/admin""><i class="fa fa-lock fa-lg" aria-hidden="true"></i> Administration</a>');
     });
     
-    $.get('api/connected', function(data) { 
-      $(" .spinner ").addClass('hide');
-      $(" #countdown ").removeClass("hide");
-      
-      if(data.connected) {
+});
+
+function displayIfConnected() {
+  $.get('api/connected', function(data) { 
         
-        $(" #welcome3 ").addClass("hide");
-        $(" #login ").removeClass('alert alert-danger');
-        $(" #welcome ").addClass('hide');
-        $(" #form ").removeClass('hide');
-        $(" #login ").html('Bienvenue aux Élections Présidentielles Scépiennes !<br> Choisissez votre candidat ci-dessous. Le vote est complètement <strong>anonyme</strong>.');
-        $(" .logout ").removeClass('hide');
-        $(" .logout ").html('<a href="/logout"">Déconnexion <i class="fa fa-sign-out fa-lg" aria-hidden="true"></i></a>');
-      }
-      else {
-        $(" #welcome3 ").removeClass("hide");
-        if(data.message != "") {
-          $(" #login ").text(data.message);
-          $(" #login ").addClass('alert alert-danger'); 
+        $(" .spinner ").addClass('hide');
+        $(" #countdown ").removeClass("hide");  
+  
+        
+        if(data.connected) {
+          
+          $(" #welcome3 ").addClass("hide");
+          $(" #login ").removeClass('alert alert-danger');
+          $(" #welcome ").addClass('hide');
+          $(" #form ").removeClass('hide');
+          $(" #login ").html('Bienvenue aux Élections Présidentielles Scépiennes !<br> Choisissez votre candidat ci-dessous. Le vote est complètement <strong>anonyme</strong>.');
+          $(" .logout ").removeClass('hide');
+          $(" .logout ").html('<a href="/logout"">Déconnexion <i class="fa fa-sign-out fa-lg" aria-hidden="true"></i></a>');
         }
         else {
-          $(" #login ").html('');
+          $(" #welcome3 ").removeClass("hide");
+          if(data.message != "") {
+            $(" #login ").text(data.message);
+            $(" #login ").addClass('alert alert-danger'); 
+          }
+          else {
+            $(" #login ").html('');
+          }
+          $(" #form ").addClass('hide');
+          $(" .logout ").addClass('hide');
+          $(" #welcome ").removeClass('hide');  
         }
-        $(" #form ").addClass('hide');
-        $(" .logout ").addClass('hide');
-        $(" #welcome ").removeClass('hide');  
-      }
-    });
-});
+  });
+}
 
 
 

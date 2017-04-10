@@ -10,12 +10,13 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     passport = require('passport'),
     GoogleStrategy = require('passport-google-oauth').OAuth2Strategy,
-    User = require('./app/controllers/userHandler.server.js'),
-    cookieParser = require('cookie-parser');
+    cookieParser = require('cookie-parser'),
+    compression = require('compression');
 
 var port = process.env.PORT || 8080;
 
 var app = express();
+app.use(compression());
 
 /* SOCKET.IO */
 var server = require('http').Server(app);
@@ -32,7 +33,7 @@ app.use(sassMiddleware({
   outputStyle: 'compressed',
   prefix: ''
 }),
-express.static(path.join(__dirname, 'public')));
+express.static(path.join(__dirname, 'public'), { maxage: '1d' }));
 // Note: you must place sass-middleware *before* `express.static` or else it will
 // not work.
 app.use('/public', express.static(path.join(__dirname, 'public')));
