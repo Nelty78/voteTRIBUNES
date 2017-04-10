@@ -140,8 +140,9 @@ function getTime() {
         var endHours = end.getHours();
         var endMinutes = end.getMinutes();
                 
-        var startHour = (startHours < 10 ? '0' : '') + startHours; // adjust +1 according to server time 
-        var endHour = (endHours < 10 ? '0' : '') + endHours; // adjust +1 according to server time 
+        // # ADJUST TO DAYLIGHT SAVING TIME...
+        var startHour = (startHours < 10 ? '0' : '') + (startHours+1); // adjust +1 according to server time 
+        var endHour = (endHours < 10 ? '0' : '') + (endHours+1); // adjust +1 according to server time 
         
         var startMinute = (startMinutes < 10 ? '0' : '') + startMinutes;
         var endMinute = (endMinutes < 10 ? '0' : '') + endMinutes;
@@ -209,7 +210,8 @@ function getVotes() {
             var hours = time.getHours();
             var minutes = time.getMinutes();
                 
-            var hour = (hours < 10 ? '0' : '') + hours; // adjust +1 according to server time 
+            // # ADJUST TO DAYLIGHT SAVING TIME...    
+            var hour = (hours < 10 ? '0' : '') + (hours+1); // adjust +1 according to server time 
             var minute = (minutes < 10 ? '0' : '') + minutes;
             
             var dateTab = ('0' + time.getDate()).slice(-2) + '/'
