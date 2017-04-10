@@ -12,6 +12,10 @@ body {
   font-family: 'Bree Serif';
 }
 
+#toast-container > div {
+  opacity: 1 !important;
+}
+
 #author {
   cursor: pointer;
 }

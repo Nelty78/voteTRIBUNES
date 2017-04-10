@@ -25,6 +25,12 @@ function voteHandler (db, passport, io) {
         });
     }
     
+    this.getTotalCount = function (req, res) {
+        clicks.count().then(function (count) {
+            res.send({'count': count});
+        });
+    }
+    
     this.getVotes = function (req, res) {
         
        clicks.find({}, { 'value': 1 }).toArray(function (err, data) {
@@ -52,7 +58,7 @@ function voteHandler (db, passport, io) {
     }
     
     this.getListVotes = function (req, res) {
-       clicks.find({}, {'email': 1, 'time': 1, 'value': 1}).sort( { _id: -1 } ).toArray(function (err, data) {
+       clicks.find({}, {'email': 1, 'time': 1}).sort( { _id: -1 } ).toArray(function (err, data) {
           if (err) {
              throw err;
           }

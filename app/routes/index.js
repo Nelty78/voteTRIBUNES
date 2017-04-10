@@ -38,6 +38,9 @@ module.exports = function (app, db, passport, io) {
     app.route('/api/isAdmin')
         .get(user.isAdmin);
     
+    app.route('/api/getTotalCount')
+        .get(user.connected, voteHandler.getTotalCount);
+    
     app.route('/auth/google')   
         .get(passport.authenticate('google', { scope: ['email profile'] }));
         

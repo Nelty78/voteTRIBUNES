@@ -1,5 +1,6 @@
 /* global $ */
 /* global cookies */
+/* global toastr */
 
 
 $( document ).ready(function() {
@@ -57,6 +58,25 @@ function displayIfConnected() {
   
         
         if(data.connected) {
+          
+          var showedToastr = false; 
+          toastr.options = {
+            "closeButton": true,
+            "positionClass": "toast-top-left",
+            "onclick": null,
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+          };
+          if(!showedToastr) {
+            $.get('api/getTotalCount', function (data) {
+              if(data.count > 5) {
+                toastr.success(data.count+" personnes ont déjà voté !");
+                showedToastr = true; 
+              }
+            });
+          }
           
           $(" #welcome3 ").addClass("hide");
           $(" #login ").removeClass('alert alert-danger');

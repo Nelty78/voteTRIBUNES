@@ -5,8 +5,8 @@ var beforeVote = false; // If the vote hasn't started we'll set this to true;
 
 $( document ).ready(function() {
 
-checkTimeLeft();
-setInterval(checkTimeLeft, 1000);
+checkTimeLeft(false);
+setInterval(function() { checkTimeLeft(true) }, 1000);
 });
 
 function disableForm(beforeVote, message) {
@@ -34,7 +34,7 @@ function enableForm() {
     $(" #submit ").removeAttr("disabled");
 }
 
-function checkTimeLeft() {
+function checkTimeLeft(displayed) {
 
 return $.get('api/getStartEnd', function(data) {
 
@@ -116,7 +116,8 @@ return $.get('api/getStartEnd', function(data) {
               var countdown = document.getElementById("tiles"); // get tag element
               countdown.innerHTML = "<span>" + daysRestant + ":</span><span>" + hoursRestant + ":</span><span>" + minutesRestant + ":</span><span>" + secondsRestant + "</span>"; 
               
-              displayIfConnected();
+              
+              if(!displayed) displayIfConnected();
               
           }
               
