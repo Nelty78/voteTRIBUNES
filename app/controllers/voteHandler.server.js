@@ -189,6 +189,7 @@ function voteHandler (db, passport, io) {
                       /* SOCKET.IO */ 
                       for(var i = 0; i < sockets.length; i++) {
                           sockets[i].emit('new vote','new vote, refreshing...');
+                          console.log('REFRESH');
                       }
                       /* SOCKET.IO */
                     

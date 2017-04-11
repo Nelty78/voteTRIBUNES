@@ -6,7 +6,7 @@ $( document ).ready(function() {
  $.blockUI({message: "Chargement..."});
  
  function socketMessages() {
-    var vote = io.connect('https://bde-nelty78.c9users.io:8080/vote');
+    var vote = io.connect('https://tribunes.herokuapp.com/vote');
     vote.on('new vote', function (data) {
         getVotes();
         getStats();
@@ -26,7 +26,7 @@ $( document ).ready(function() {
  socketMessages();
  
  function barWidth(ratio) {
-     return (ratio*1800).toFixed(0);
+     return (ratio*1300).toFixed(0);
  }
  
  
@@ -207,7 +207,7 @@ function getVotes() {
             var minutes = time.getMinutes();
                 
             // # ADJUST TO DAYLIGHT SAVING TIME...    
-            var hour = (hours < 10 ? '0' : '') + (hours+1); // adjust +1 according to server time 
+            var hour = (hours < 9 ? '0' : '') + (hours+1); // adjust +1 according to server time 
             var minute = (minutes < 10 ? '0' : '') + minutes;
             
             var dateTab = ('0' + time.getDate()).slice(-2) + '/'
