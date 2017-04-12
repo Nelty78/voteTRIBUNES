@@ -70,7 +70,7 @@ $( document ).ready(function() {
      $.get('admin/getVotes', function(data) { 
          
           var total = data.total;
-          if(total < 10) {
+          if(total < 5) {
               $(" .candidates ").addClass('hide');
               $(" .message ").removeClass('hide');
           }
