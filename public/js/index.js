@@ -71,7 +71,7 @@ function displayIfConnected(beforeVote) {
           };
           if(!showedToastr) {
             $.get('api/getTotalCount', function (data) {
-              if(data.count > 5) {
+              if(data.count > 5 && !beforeVote) {
                 toastr.success(data.count+" personnes ont déjà voté !");
                 showedToastr = true; 
               }

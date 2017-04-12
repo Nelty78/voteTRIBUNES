@@ -89,6 +89,7 @@ return $.get('api/getStartEnd', function(data) {
           
           if(seconds_left < 0) { 
               disableForm(false, 'Temps écoulé.');
+              if(!displayed) displayIfConnected(true);
           }
           else {
               if ( seconds_left >= 0 ) {
@@ -116,11 +117,11 @@ return $.get('api/getStartEnd', function(data) {
               var countdown = document.getElementById("tiles"); // get tag element
               countdown.innerHTML = "<span>" + daysRestant + ":</span><span>" + hoursRestant + ":</span><span>" + minutesRestant + ":</span><span>" + secondsRestant + "</span>"; 
               
-              
+              if(!displayed) displayIfConnected(beforeVote);
               
               
           }
-          if(!displayed) displayIfConnected(beforeVote);
+          
               
      
 });
