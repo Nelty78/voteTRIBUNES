@@ -109,7 +109,8 @@ function displayIfConnected(beforeVote) {
 
 function submite() {
   var selectValue = $('input[name=candidat]:checked', '#form').val();
-  var possibleSelects = ['Dupont', 'Pen', 'Macron', 'Hamon', 'Arthaud', 'Poutou', 'Cheminade', 'Lassalle', 'Melenchon', 'Asselineau', 'Fillon', 'Blanc'];
+  //var possibleSelects = ['Dupont', 'Pen', 'Macron', 'Hamon', 'Arthaud', 'Poutou', 'Cheminade', 'Lassalle', 'Melenchon', 'Asselineau', 'Fillon', 'Blanc'];
+  var possibleSelects = ['Macron', 'Fillon', 'Blanc'];
   
   if(possibleSelects.indexOf(selectValue) > -1) {
     $(" #login ").text('');

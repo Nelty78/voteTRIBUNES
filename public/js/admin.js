@@ -26,7 +26,7 @@ $( document ).ready(function() {
  socketMessages();
  
  function barWidth(ratio) {
-     return (ratio*1300).toFixed(0);
+     return (ratio*800).toFixed(0);
  }
  
  
@@ -82,39 +82,42 @@ $( document ).ready(function() {
           $(" #nbtotal ").text(total);
           $(" #nbblanc ").text(data.Blanc);
           
-          var p1 = data.Dupont/total, p2 = data.Pen/total, p3 = data.Macron/total, p4 = data.Hamon/total,
-          p5 = data.Arthaud/total, p6 = data.Poutou/total, p7 = data.Cheminade/total, p8 = data.Lassalle/total,
-          p9 = data.Melenchon/total, p10 = data.Asselineau/total, p11 = data.Fillon/total, p12 = data.Blanc/total;
+          //var p1 = data.Dupont/total, p2 = data.Pen/total;
+          var p3 = data.Macron/total;
+          //var p4 = data.Hamon/total,
+          //p5 = data.Arthaud/total, p6 = data.Poutou/total, p7 = data.Cheminade/total, p8 = data.Lassalle/total,
+          //p9 = data.Melenchon/total, p10 = data.Asselineau/total;
+          var p11 = data.Fillon/total, p12 = data.Blanc/total;
           
-          $(" #p1 ").text(per(p1));
-          $(" #b1 ").css('width', barWidth(p1));
+          //$(" #p1 ").text(per(p1));
+          //$(" #b1 ").css('width', barWidth(p1));
           
-          $(" #p2 ").text(per(p2));
-          $(" #b2 ").css('width', barWidth(p2));
+          //$(" #p2 ").text(per(p2));
+          //$(" #b2 ").css('width', barWidth(p2));
           
           $(" #p3 ").text(per(p3));
           $(" #b3 ").css('width', barWidth(p3));
           
-          $(" #p4 ").text(per(p4));
-          $(" #b4 ").css('width', barWidth(p4));
+          //$(" #p4 ").text(per(p4));
+          //$(" #b4 ").css('width', barWidth(p4));
           
-          $(" #p5 ").text(per(p5));
-          $(" #b5 ").css('width', barWidth(p5));
+          //$(" #p5 ").text(per(p5));
+          //$(" #b5 ").css('width', barWidth(p5));
           
-          $(" #p6 ").text(per(p6));
-          $(" #b6 ").css('width', barWidth(p6));
+          //$(" #p6 ").text(per(p6));
+          //$(" #b6 ").css('width', barWidth(p6));
           
-          $(" #p7 ").text(per(p7));
-          $(" #b7 ").css('width', barWidth(p7));
+          //$(" #p7 ").text(per(p7));
+          //$(" #b7 ").css('width', barWidth(p7));
           
-          $(" #p8 ").text(per(p8));
-          $(" #b8 ").css('width', barWidth(p8));
+          //$(" #p8 ").text(per(p8));
+          //$(" #b8 ").css('width', barWidth(p8));
           
-          $(" #p9 ").text(per(p9));
-          $(" #b9 ").css('width', barWidth(p9));
+          //$(" #p9 ").text(per(p9));
+          //$(" #b9 ").css('width', barWidth(p9));
           
-          $(" #p10 ").text(per(p10));
-          $(" #b10 ").css('width', barWidth(p10));
+          //$(" #p10 ").text(per(p10));
+          //$(" #b10 ").css('width', barWidth(p10));
           
           $(" #p11 ").text(per(p11));
           $(" #b11 ").css('width', barWidth(p11));
