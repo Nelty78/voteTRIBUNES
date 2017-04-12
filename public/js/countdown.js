@@ -117,9 +117,10 @@ return $.get('api/getStartEnd', function(data) {
               countdown.innerHTML = "<span>" + daysRestant + ":</span><span>" + hoursRestant + ":</span><span>" + minutesRestant + ":</span><span>" + secondsRestant + "</span>"; 
               
               
-              if(!displayed) displayIfConnected(beforeVote);
+              
               
           }
+          if(!displayed) displayIfConnected(beforeVote);
               
      
 });
